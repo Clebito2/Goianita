@@ -13,8 +13,6 @@
             --live-azul-petroleo: #06192a;
             --live-verde-vibrante: #00e800;
             --live-branco: #ffffff;
-            --live-cinza-claro: #f8f9fa;
-            --live-cinza-medio: #6c757d;
             --font-poppins: 'Poppins', sans-serif;
             --font-merriweather: 'Merriweather', serif;
         }
@@ -22,18 +20,13 @@
             font-family: var(--font-poppins);
             background-color: var(--live-azul-petroleo);
             color: var(--live-branco);
-            /* Textura de fundo sutil */
             background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
         }
         .font-merriweather { font-family: var(--font-merriweather); }
-        .bg-live-azul { background-color: var(--live-azul-petroleo); }
         .text-live-verde {
             color: var(--live-verde-vibrante);
-            /* Efeito de brilho para destaque */
             text-shadow: 0 0 8px rgba(0, 232, 0, 0.7);
         }
-        .bg-live-verde { background-color: var(--live-verde-vibrante); }
-        .border-live-verde { border-color: var(--live-verde-vibrante); }
         .btn-primary {
             background-color: var(--live-verde-vibrante);
             color: var(--live-azul-petroleo);
@@ -52,8 +45,8 @@
         .tab-button {
             border-bottom: 3px solid transparent;
             transition: all 0.3s ease;
+            padding: 0.75rem 1rem;
         }
-        /* Animações de entrada */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -64,7 +57,7 @@
         .card {
             border: 1px solid #ffffff20;
             border-radius: 12px;
-            background-color: #0A243D; /* Cor sólida, sem transparência */
+            background-color: #0A243D;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .card:hover {
@@ -128,44 +121,41 @@
             border-radius: 50%;
             z-index: 1;
         }
-        .timeline-left {
-            left: 0;
-        }
-        .timeline-right {
-            left: 50%;
-        }
-        .timeline-right::after {
-            left: -12.5px;
-        }
+        .timeline-left { left: 0; }
+        .timeline-right { left: 50%; }
+        .timeline-right::after { left: -12.5px; }
         .timeline-content {
             padding: 20px 30px;
-            background-color: #0A243D; /* Cor sólida, sem transparência */
+            background-color: #0A243D;
             position: relative;
             border-radius: 8px;
             border: 1px solid #ffffff30;
         }
+        .client-logo-container {
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+        .client-logo-container:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        .client-logo-container img {
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+        }
+        .client-logo-container:hover img {
+            filter: grayscale(0%);
+        }
         @media screen and (max-width: 768px) {
-            .timeline::after {
-                left: 31px;
-            }
-            .timeline-container {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            .timeline-left, .timeline-right {
-                left: 0%;
-                animation-name: slide-in;
-            }
-            .timeline-left::after, .timeline-right::after {
-                left: 18px;
-            }
+            .timeline::after { left: 31px; }
+            .timeline-container { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-left, .timeline-right { left: 0%; animation-name: slide-in; }
+            .timeline-left::after, .timeline-right::after { left: 18px; }
         }
     </style>
 </head>
 <body class="bg-live-azul">
 
-    <!-- ABA DE NAVEGAÇÃO -->
     <header class="py-4 px-8 fixed top-0 left-0 right-0 z-50 bg-live-azul/80 backdrop-blur-sm">
         <div class="container mx-auto flex justify-between items-center">
             <img src="https://raw.githubusercontent.com/Clebito2/layout/main/Logo%20live%20oficial-36.png" alt="Logo Live Consultoria" class="h-12">
@@ -211,50 +201,26 @@
             </div>
         </section>
 
-        <!-- SEÇÃO CRONOGRAMA DETALHADO -->
-        <section class="py-16 md:py-24 bg-live-azul">
-            <div class="container mx-auto px-4 fade-in">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold">Cronograma Detalhado</h2>
-                    <p class="mt-2 text-gray-400">Prazos e entregáveis detalhados para cada fase do projeto.</p>
-                </div>
-                <div class="card overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table id="schedule-table" class="w-full text-left">
-                            <thead class="bg-black/50">
-                                <tr>
-                                    <th class="px-6 py-4 text-sm font-semibold uppercase text-live-verde tracking-wider">Fase</th>
-                                    <th class="px-6 py-4 text-sm font-semibold uppercase text-live-verde tracking-wider">Entregável Principal</th>
-                                    <th class="px-6 py-4 text-sm font-semibold uppercase text-live-verde tracking-wider">Data de Início</th>
-                                    <th class="px-6 py-4 text-sm font-semibold uppercase text-live-verde tracking-wider">Data de Fim</th>
-                                    <th class="px-6 py-4 text-center text-sm font-semibold uppercase text-live-verde tracking-wider">Duração</th>
-                                </tr>
-                            </thead>
-                            <tbody id="schedule-table-body" class="text-gray-200">
-                                <!-- Linhas serão injetadas pelo JavaScript -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- SEÇÃO PROPOSTA E CONTRATO (ABAS) -->
-        <section id="proposal-details" class="py-16 md:py-24 bg-black/20">
+        <section id="proposal-details" class="py-16 md:py-24 bg-live-azul">
             <div class="container mx-auto px-4 md:px-16 fade-in">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold">Detalhes da Parceria</h2>
                     <p class="mt-2 text-gray-400">Consulte o escopo, investimento e o documento contratual.</p>
                 </div>
                 <!-- Abas -->
-                <div class="flex justify-center border-b border-gray-700 mb-8">
-                    <button class="tab-button active text-lg font-semibold py-3 px-6" onclick="openTab(event, 'scope')">Escopo Detalhado</button>
-                    <button class="tab-button text-lg font-semibold py-3 px-6" onclick="openTab(event, 'investment')">Investimento</button>
-                    <button class="tab-button text-lg font-semibold py-3 px-6" onclick="openTab(event, 'contract')">Contrato</button>
+                <div class="flex flex-wrap justify-center border-b border-gray-700 mb-8">
+                    <button class="tab-button active text-lg font-semibold" onclick="openTab(event, 'scope')">Escopo Detalhado</button>
+                    <button class="tab-button text-lg font-semibold" onclick="openTab(event, 'atuacao')">Áreas de Atuação</button>
+                    <button class="tab-button text-lg font-semibold" onclick="openTab(event, 'investment')">Investimento</button>
+                    <button class="tab-button text-lg font-semibold" onclick="openTab(event, 'contract')">Contrato</button>
                 </div>
                 <!-- Conteúdo das Abas -->
                 <div id="scope" class="tab-content">
                     <div id="scope-details" class="space-y-6"></div>
+                </div>
+                <div id="atuacao" class="tab-content hidden">
+                    <div id="atuacao-details" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
                 </div>
                 <div id="investment" class="tab-content hidden">
                     <div id="investment-details" class="max-w-4xl mx-auto"></div>
@@ -269,9 +235,21 @@
             </div>
         </section>
 
+        <!-- SEÇÃO NOSSOS CLIENTES -->
+        <section class="py-16 md:py-24 bg-black/20">
+            <div class="container mx-auto px-4 fade-in">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">Nossos Clientes</h2>
+                    <p class="mt-2 text-gray-400">Temos a honra de atender grandes marcas e contribuir para o seu sucesso.</p>
+                </div>
+                <div id="clients-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-8 gap-y-10 items-center justify-items-center">
+                    <!-- Logos e nomes dos clientes serão injetados aqui -->
+                </div>
+            </div>
+        </section>
+
     </main>
     
-    <!-- RODAPÉ -->
     <footer class="bg-black py-12">
         <div class="container mx-auto px-8 text-center text-gray-400">
             <img src="https://raw.githubusercontent.com/Clebito2/layout/main/Logo%20live%20oficial-34.png" alt="Logo Live" class="h-32 mx-auto mb-6">
@@ -295,59 +273,38 @@ const propostaData = {
     },
     "diagnostico": "A análise da Casas Goianita revela uma operação com alta dependência de processos manuais e um sistema com limitações para a operação atual, o que resulta em falhas críticas de controle de estoque e ausência de visibilidade financeira (DRE, DFC). Essa estrutura limita a escalabilidade, impede a presença em canais digitais e cria riscos operacionais pela centralização do conhecimento. A oportunidade reside em uma reestruturação completa, implementando um sistema de gestão integrado (ERP), mapeando e otimizando processos, e desenvolvendo uma estratégia comercial e de marketing moderna para capitalizar o potencial de mercado ainda inexplorado.",
     "cronograma": [
-        {
-            "fase": "Fase 1: Auditoria e Diagnóstico",
-            "duracao": "Prazo: 45 dias",
-            "entregaveis": [
-                "Auditoria completa de Inventário, Financeira e de Passivos",
-                "Mapeamento de Estratégias para Redução de Passivo",
-                "Desenho dos Processos Atuais (AS-IS)"
-            ]
-        },
-        {
-            "fase": "Fase 2: Planejamento e Governança",
-            "duracao": "Prazo: 37 dias",
-            "entregaveis": [
-                "Estruturação do Acordo Societário e Plano de Sucessão",
-                "Estruturação do Conselho Consultivo",
-                "Definição do Organograma e Mapeamento de Perfis"
-            ]
-        },
-        {
-            "fase": "Fase 3: Implementação do ERP",
-            "duracao": "Prazo: 60 dias",
-            "entregaveis": [
-                "Planejamento detalhado para Implantação do novo Sistema",
-                "Sanitização de Cadastros (Clientes/Fornecedores)",
-                "Apoio na migração de dados e treinamento das equipes"
-            ]
-        },
-        {
-            "fase": "Fase 4: Lançamento do Novo Posicionamento",
-            "duracao": "Prazo: 90 dias",
-            "entregaveis": [
-                "Desenvolvimento do Plano de Marketing e Nova Identidade Visual",
-                "Estruturação e Lançamento dos Canais de Venda Online",
-                "Projeto de Reestruturação Física das Lojas",
-                "Acompanhamento de KPIs e operação assistida"
-            ]
-        }
+        { "fase": "Fase 1: Auditoria e Diagnóstico", "duracao": "Prazo: 45 dias", "entregaveis": ["Auditoria completa de Inventário, Financeira e de Passivos", "Mapeamento de Estratégias para Redução de Passivo", "Desenho dos Processos Atuais (AS-IS)"] },
+        { "fase": "Fase 2: Planejamento e Governança", "duracao": "Prazo: 37 dias", "entregaveis": ["Estruturação do Acordo Societário e Plano de Sucessão", "Estruturação do Conselho Consultivo", "Definição do Organograma e Mapeamento de Perfis"] },
+        { "fase": "Fase 3: Implementação do ERP", "duracao": "Prazo: 60 dias", "entregaveis": ["Planejamento detalhado para Implantação do novo Sistema", "Sanitização de Cadastros (Clientes/Fornecedores)", "Apoio na migração de dados e treinamento das equipes"] },
+        { "fase": "Fase 4: Lançamento do Novo Posicionamento", "duracao": "Prazo: 90 dias", "entregaveis": ["Desenvolvimento do Plano de Marketing e Nova Identidade Visual", "Estruturação e Lançamento dos Canais de Venda Online", "Projeto de Reestruturação Física das Lojas", "Acompanhamento de KPIs e operação assistida"] }
     ],
-    "cronogramaDetalhado": {
-        "startDate": '2025-07-14',
-        "phases": [
-            { "name": "Fase 1: Auditoria e Diagnóstico", "duration": 45, "deliverables": ["Auditoria completa de Inventário, Financeira e de Passivos", "Mapeamento de Estratégias para Redução de Passivo", "Desenho dos Processos Atuais (AS-IS)"] },
-            { "name": "Fase 2: Planejamento e Governança", "duration": 37, "deliverables": ["Estruturação do Acordo Societário e Plano de Sucessão", "Estruturação do Conselho Consultivo", "Definição do Organograma e Mapeamento de Perfis"] },
-            { "name": "Fase 3: Implementação do ERP", "duration": 60, "deliverables": ["Planejamento detalhado para Implantação do novo Sistema", "Sanitização de Cadastros (Clientes/Fornecedores)", "Apoio na migração de dados e treinamento das equipes"] },
-            { "name": "Fase 4: Lançamento do Novo Posicionamento", "duration": 90, "deliverables": ["Desenvolvimento do Plano de Marketing e Nova Identidade Visual", "Estruturação e Lançamento dos Canais de Venda Online", "Projeto de Reestruturação Física das Lojas", "Acompanhamento de KPIs e operação assistida"] }
-        ]
-    },
     "escopoDetalhado": [
         { "titulo": "Governança Corporativa e Sucessão", "detalhes": "Estruturação de conselho consultivo, desenvolvimento de plano de sucessão e elaboração de acordo societário para garantir a perenidade e a estabilidade do negócio." },
         { "titulo": "Diagnóstico e Reestruturação Financeira", "detalhes": "Auditorias completas (inventário, financeiro, passivos) e implementação de estratégias para redução de passivos, estabelecendo uma base financeira sólida." },
         { "titulo": "Processos, Pessoas e Tecnologia", "detalhes": "Mapeamento e otimização de processos, reestruturação do organograma com mapeamento de perfis e planejamento para a implantação de um novo sistema de gestão (ERP)." },
         { "titulo": "Estratégia Comercial e de Mercado", "detalhes": "Análise de mercado (Curva ABC, Benchmark), negociação com fornecedores e parceiros estratégicos, e projeto para reestruturação física das lojas." },
         { "titulo": "Marketing e Transformação Digital", "detalhes": "Criação de uma nova identidade visual, desenvolvimento de um plano de marketing digital e estruturação de canais de venda online para inserir a empresa no mercado digital." }
+    ],
+    "atuacaoPorArea": [
+        { "area": "Governança e Estratégia", "entregaveis": ["Conselho Consultivo", "Plano de Sucessão", "Acordo Societário", "Planejamento Estratégico"] },
+        { "area": "Finanças e Controladoria", "entregaveis": ["Auditoria Financeira", "Redução de Passivos", "Planejamento Tributário", "Implantação de DRE e DFC"] },
+        { "area": "Operações e Processos", "entregaveis": ["Auditoria de Estoque", "Mapeamento de Processos (AS-IS / TO-BE)", "Reestruturação Física das Lojas"] },
+        { "area": "Tecnologia e Inovação", "entregaveis": ["Implantação de Sistema ERP", "Estruturação de Canais de Venda Online", "Integração de PDV"] },
+        { "area": "Pessoas e Cultura", "entregaveis": ["Reestruturação Organizacional", "Mapeamento de Perfis Comportamentais", "Treinamento de Equipes"] },
+        { "area": "Marketing e Branding", "entregaveis": ["Reposicionamento de Marca", "Plano de Marketing Digital", "Gestão de Identidade Visual"] }
+    ],
+    "outrosClientes": [
+        { "nome": "Hypera Pharma", "logo": "https://logodownload.org/wp-content/uploads/2021/07/hypera-pharma-logo-0.png" },
+        { "nome": "SICOOB", "logo": "https://logodownload.org/wp-content/uploads/2020/11/sicoob-logo-0.png" },
+        { "nome": "CDA Alimentos", "logo": "https://www.cdaalimentos.com.br/wp-content/uploads/2022/02/logo-cda.png" },
+        { "nome": "Grupo Lage", "logo": "https://grupolage.com.br/wp-content/uploads/2023/07/logo-grupo-lage.png" },
+        { "nome": "Bahrem", "logo": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/bar-and-restaurant-logo-design-template-a2e4631588a4375f90ad14660a59b95a_screen.jpg?ts=1664261483" },
+        { "nome": "Tatico", "logo": "https://www.tatico.com.br/wp-content/uploads/2021/07/logo-tatico.png"},
+        { "nome": "Melt", "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_4y5b6f_4y5b6f_4y5b6f_4y5b6f_4y5b6f_4y5b6f_4y5b6f_4y5b6f&usqp=CAU" },
+        { "nome": "Newline", "logo": "https://www.newline.com.br/images/logo_newline.png" },
+        { "nome": "Tio Jorge", "logo": "https://www.acieg.com.br/uploads/associados/2020-09-03_14-41-00_5f51394c8b36a.png" },
+        { "nome": "Neo Química", "logo": "https://logodownload.org/wp-content/uploads/2020/12/neo-quimica-logo-1.png" },
+        { "nome": "Grupo Coral", "logo": "https://grupocoral.com.br/wp-content/uploads/2022/05/logo-grupo-coral.svg" }
     ],
     "investimento": {
         "valorTotalNumerico": 55000.00,
@@ -370,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const side = index % 2 === 0 ? 'timeline-left' : 'timeline-right';
         return `
             <div class="timeline-container ${side}">
-                <div class="timeline-content">
+                <div class="timeline-content card">
                     <h3 class="text-xl font-bold text-live-verde">${item.fase}</h3>
                     <p class="text-md font-semibold text-white mb-3">${item.duracao}</p>
                     <ul class="list-disc list-inside text-gray-300 text-sm space-y-1">
@@ -381,61 +338,23 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }).join('');
 
-    // Cronograma Detalhado (Tabela)
-    function addDays(date, days) {
-        const result = new Date(date);
-        result.setDate(result.getDate() + days);
-        return result;
-    }
-
-    function formatDate(date) {
-        return new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(date);
-    }
-
-    const tableBody = document.getElementById('schedule-table-body');
-    let currentDate = new Date(propostaData.cronogramaDetalhado.startDate);
-    let phaseCounter = 0;
-
-    propostaData.cronogramaDetalhado.phases.forEach(phase => {
-        const startDate = new Date(currentDate);
-        const endDate = addDays(startDate, phase.duration - 1);
-
-        phase.deliverables.forEach((deliverable, index) => {
-            const isFirstRowOfPhase = index === 0;
-            const row = document.createElement('tr');
-            
-            let rowClass = 'border-b border-gray-800';
-            if (isFirstRowOfPhase && phaseCounter > 0) {
-                rowClass = 'border-t-4 border-live-verde';
-            }
-            row.className = rowClass;
-            
-            let phaseCell = '';
-            if (isFirstRowOfPhase) {
-                phaseCell = `<td class="px-6 py-4 font-semibold" rowspan="${phase.deliverables.length}">${phase.name}</td>`;
-            }
-
-            row.innerHTML = `
-                ${phaseCell}
-                <td class="px-6 py-4">${deliverable}</td>
-                ${isFirstRowOfPhase ? `<td class="px-6 py-4" rowspan="${phase.deliverables.length}">${formatDate(startDate)}</td>` : ''}
-                ${isFirstRowOfPhase ? `<td class="px-6 py-4" rowspan="${phase.deliverables.length}">${formatDate(endDate)}</td>` : ''}
-                ${isFirstRowOfPhase ? `<td class="px-6 py-4 text-center" rowspan="${phase.deliverables.length}">${phase.duration} dias</td>` : ''}
-            `;
-            tableBody.appendChild(row);
-        });
-        
-        currentDate = addDays(endDate, 1);
-        phaseCounter++;
-    });
-
-
     // Escopo Detalhado
     const scopeContainer = document.getElementById('scope-details');
     scopeContainer.innerHTML = propostaData.escopoDetalhado.map(item => `
         <div class="card p-6">
             <h4 class="text-xl font-semibold text-live-verde">${item.titulo}</h4>
             <p class="mt-2 text-gray-300">${item.detalhes}</p>
+        </div>
+    `).join('');
+
+    // Áreas de Atuação
+    const atuacaoContainer = document.getElementById('atuacao-details');
+    atuacaoContainer.innerHTML = propostaData.atuacaoPorArea.map(item => `
+        <div class="card p-6">
+            <h4 class="text-xl font-semibold text-live-verde mb-3">${item.area}</h4>
+            <ul class="space-y-2">
+                ${item.entregaveis.map(e => `<li class="flex items-center"><svg class="w-4 h-4 mr-2 text-live-verde" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>${e}</li>`).join('')}
+            </ul>
         </div>
     `).join('');
 
@@ -455,6 +374,17 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
     `;
+
+    // Clientes
+    const clientsContainer = document.getElementById('clients-container');
+    clientsContainer.innerHTML = propostaData.outrosClientes.map(client => `
+        <div class="flex flex-col items-center text-center client-logo-container p-4"> // Alteração aqui: items-center e p-4
+            <div class="h-24 w-24 mb-4 flex items-center justify-center overflow-hidden rounded-full bg-gray-700"> // Novo container para imagem
+                 <img src="${client.logo}" alt="${client.nome}" class="max-h-full max-w-full object-contain" onerror="this.parentElement.style.display='none'">
+            </div>
+            <p class="text-sm font-medium text-gray-300">${client.nome}</p>
+        </div>
+    `).join('');
 });
 
 // Função para trocar as abas
