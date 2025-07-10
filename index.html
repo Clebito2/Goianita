@@ -294,17 +294,17 @@ const propostaData = {
         { "area": "Marketing e Branding", "entregaveis": ["Reposicionamento de Marca", "Plano de Marketing Digital", "Gestão de Identidade Visual"] }
     ],
     "outrosClientes": [
-        { "nome": "Hypera Pharma", "logo": "Hypera.png" },
-        { "nome": "SICOOB", "logo": "sicoob.png" },
-        { "nome": "CDA Alimentos", "logo": "CDA.png" },
-        { "nome": "Grupo Lage", "logo": "Lage.png" },
-        { "nome": "Bahrem", "logo": "bahrem.png" },
-        { "nome": "Tatico", "logo": "tatico.png"},
-        { "nome": "Melt", "logo": "melt.png" },
-        { "nome": "Newline", "logo": "newline.png" },
-        { "nome": "Tio Jorge", "logo": "Tio jorge.png" },
-        { "nome": "Neo Química", "logo": "https://logodownload.org/wp-content/uploads/2020/12/neo-quimica-logo-1.png" }, // Mantido como URL externa
-        { "nome": "Grupo Coral", "logo": "https://grupocoral.com.br/wp-content/uploads/2022/05/logo-grupo-coral.svg" } // Mantido como URL externa
+        { "nome": "Hypera Pharma", "logo": "https://raw.githubusercontent.com/Clebito2/Goianita/main/Hypera.png" },
+        { "nome": "SICOOB", "logo": "https://raw.githubusercontent.com/Clebito2/Goianita/main/sicoob.png" },
+        { "nome": "CDA Alimentos", "logo": "https://raw.githubusercontent.com/Clebito2/Goianita/main/CDA.png" },
+        { "nome": "Grupo Lage", "logo": "https://raw.githubusercontent.com/Clebito2/Goianita/main/Lage.png" },
+        { "nome": "Bahrem", "logo": "https://raw.githubusercontent.com/Clebito2/Goianita/main/bahrem.png" },
+        { "nome": "Tatico", "logo": "https://raw.githubusercontent.com/Clebito2/Goianita/main/tatico.png"},
+        { "nome": "Melt", "logo": "https://raw.githubusercontent.com/Clebito2/Goianita/main/melt.png" },
+        { "nome": "Newline", "logo": "https://raw.githubusercontent.com/Clebito2/Goianita/main/newline.png" },
+        { "nome": "Tio Jorge", "logo": "https://raw.githubusercontent.com/Clebito2/Goianita/main/Tio%20jorge.png" },
+        { "nome": "Neo Química", "logo": "https://raw.githubusercontent.com/Clebito2/Goianita/main/neoquimica.png" },
+        { "nome": "Grupo Coral", "logo": "https://raw.githubusercontent.com/Clebito2/Goianita/main/grupocoral.jpg" }
     ],
     "investimento": {
         "valorTotalNumerico": 55000.00,
@@ -378,8 +378,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Clientes
     const clientsContainer = document.getElementById('clients-container');
     clientsContainer.innerHTML = propostaData.outrosClientes.map(client => `
-        <div class="flex flex-col items-center text-center client-logo-container p-4"> // Alteração aqui: items-center e p-4
-            <div class="h-24 w-24 mb-4 flex items-center justify-center overflow-hidden rounded-full bg-gray-700"> // Novo container para imagem
+        <div class="flex flex-col items-center text-center client-logo-container p-4">
+            <div class="h-24 w-24 mb-4 flex items-center justify-center overflow-hidden rounded-full bg-gray-700">
                  <img src="${client.logo}" alt="${client.nome}" class="max-h-full max-w-full object-contain" onerror="this.parentElement.style.display='none'">
             </div>
             <p class="text-sm font-medium text-gray-300">${client.nome}</p>
