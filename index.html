@@ -167,7 +167,6 @@
     </header>
 
     <main class="pt-24">
-        <!-- SEÇÃO HERO -->
         <section class="py-20 md:py-32 text-center">
             <div class="container mx-auto px-4 fade-in">
                 <h1 class="text-4xl md:text-6xl font-bold leading-tight">
@@ -176,7 +175,6 @@
             </div>
         </section>
         
-        <!-- SEÇÃO DIAGNÓSTICO -->
         <section class="py-16 md:py-24 bg-live-azul">
             <div class="container mx-auto px-4 md:px-16 fade-in">
                 <div class="text-center mb-12">
@@ -188,7 +186,6 @@
             </div>
         </section>
 
-        <!-- SEÇÃO CRONOGRAMA -->
         <section class="py-16 md:py-24 bg-black/20">
             <div class="container mx-auto px-4 fade-in">
                 <div class="text-center mb-16">
@@ -196,26 +193,22 @@
                     <p class="mt-2 text-gray-400">Uma visão clara das fases do projeto e suas respectivas durações, totalizando um ciclo de transformação de aproximadamente 8 meses.</p>
                 </div>
                 <div id="timeline-container" class="timeline">
-                    <!-- O conteúdo do cronograma visual será injetado aqui -->
-                </div>
+                    </div>
             </div>
         </section>
 
-        <!-- SEÇÃO PROPOSTA E CONTRATO (ABAS) -->
         <section id="proposal-details" class="py-16 md:py-24 bg-live-azul">
             <div class="container mx-auto px-4 md:px-16 fade-in">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold">Detalhes da Parceria</h2>
                     <p class="mt-2 text-gray-400">Consulte o escopo, investimento e o documento contratual.</p>
                 </div>
-                <!-- Abas -->
                 <div class="flex flex-wrap justify-center border-b border-gray-700 mb-8">
                     <button class="tab-button active text-lg font-semibold" onclick="openTab(event, 'scope')">Escopo Detalhado</button>
                     <button class="tab-button text-lg font-semibold" onclick="openTab(event, 'atuacao')">Áreas de Atuação</button>
                     <button class="tab-button text-lg font-semibold" onclick="openTab(event, 'investment')">Investimento</button>
                     <button class="tab-button text-lg font-semibold" onclick="openTab(event, 'contract')">Contrato</button>
                 </div>
-                <!-- Conteúdo das Abas -->
                 <div id="scope" class="tab-content">
                     <div id="scope-details" class="space-y-6"></div>
                 </div>
@@ -235,7 +228,6 @@
             </div>
         </section>
 
-        <!-- SEÇÃO NOSSOS CLIENTES -->
         <section class="py-16 md:py-24 bg-black/20">
             <div class="container mx-auto px-4 fade-in">
                 <div class="text-center mb-12">
@@ -243,8 +235,7 @@
                     <p class="mt-2 text-gray-400">Temos a honra de atender grandes marcas e contribuir para o seu sucesso.</p>
                 </div>
                 <div id="clients-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-8 gap-y-10 items-center justify-items-center">
-                    <!-- Logos e nomes dos clientes serão injetados aqui -->
-                </div>
+                    </div>
             </div>
         </section>
 
@@ -307,9 +298,20 @@ const propostaData = {
         { "nome": "Grupo Coral", "logo": "https://raw.githubusercontent.com/Clebito2/Goianita/main/grupocoral.jpg" }
     ],
     "investimento": {
-        "valorTotalNumerico": 55000.00,
-        "valorTotalExtenso": "Cinquenta e cinco mil reais",
-        "formaPagamento": "50% na assinatura do contrato e 50% na conclusão do projeto."
+        "modelo": "Remuneração Híbrida (Sweat Equity)",
+        "feeMensal": {
+            "valor": 18850.00,
+            "descricao": "Fee mensal de R$ 18.850,00 durante a execução do projeto."
+        },
+        "participacao": {
+            "percentual": "15%",
+            "descricao": "Participação societária minoritária de 15% no capital da empresa, com opção de recompra pela família após 36 meses."
+        },
+        "bonus": {
+            "percentual": "20%",
+            "descricao": "Bônus de êxito de 20% sobre as economias financeiras geradas (tributárias e redução de passivos)."
+        },
+        "resumo": "Este modelo alinha os interesses da consultoria aos da Casas Goianita, compartilhando riscos e o sucesso da reestruturação."
     }
 };
 
@@ -358,22 +360,59 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     `).join('');
 
-    // Investimento
+    // Investimento (CORRIGIDO)
     const investmentContainer = document.getElementById('investment-details');
     const formatCurrency = (value) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+    const investData = propostaData.investimento;
+
     investmentContainer.innerHTML = `
-        <div class="card overflow-hidden">
-            <div class="p-8 text-center">
-                <p class="text-lg text-gray-400">Investimento Total no Projeto</p>
-                <p class="text-5xl font-bold text-live-verde my-2">${formatCurrency(propostaData.investimento.valorTotalNumerico)}</p>
-                <p class="text-gray-300">(${propostaData.investimento.valorTotalExtenso})</p>
-            </div>
-            <div class="bg-black/20 p-6 text-center">
-                <h4 class="text-lg font-semibold text-white">Condições de Pagamento</h4>
-                <p class="text-gray-300 mt-2">${propostaData.investimento.formaPagamento}</p>
+        <div class="card p-8">
+            <h3 class="text-2xl font-bold text-center text-live-verde mb-6">${investData.modelo}</h3>
+            <p class="text-center text-gray-300 mb-8">${investData.resumo}</p>
+            <div class="space-y-6">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-live-verde/10 text-live-verde">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <dt class="text-lg leading-6 font-medium text-white">Fee Mensal Reduzido</dt>
+                        <dd class="mt-2 text-base text-gray-400">${investData.feeMensal.descricao} (${formatCurrency(investData.feeMensal.valor)})</dd>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-live-verde/10 text-live-verde">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <dt class="text-lg leading-6 font-medium text-white">Participação Societária (${investData.participacao.percentual})</dt>
+                        <dd class="mt-2 text-base text-gray-400">${investData.participacao.descricao}</dd>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-live-verde/10 text-live-verde">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <dt class="text-lg leading-6 font-medium text-white">Bônus de Êxito (${investData.bonus.percentual})</dt>
+                        <dd class="mt-2 text-base text-gray-400">${investData.bonus.descricao}</dd>
+                    </div>
+                </div>
             </div>
         </div>
     `;
+
 
     // Clientes
     const clientsContainer = document.getElementById('clients-container');
